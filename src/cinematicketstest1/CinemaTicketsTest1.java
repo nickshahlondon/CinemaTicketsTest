@@ -65,11 +65,11 @@ public class CinemaTicketsTest1 {
 
         Scanner user_input = new Scanner (System.in);
 
-      int num_tickets_bought = 0;
+      TicketStore ticket_store = new InMemoryTicketStore();
       boolean checkout = false;
       while(!checkout) {
           System.out.println("What do you want to do?");
-          System.out.println("1. By another ticket.");
+          System.out.println("1. Buy another ticket.");
           System.out.println("2. Check out.");
           System.out.println();
           System.out.println ("Enter a selection (1, 2):");
@@ -84,14 +84,14 @@ public class CinemaTicketsTest1 {
           }
           switch(command) {
             case 1:
-              num_tickets_bought++;
+              ticket_store.addTicketOrder();
               System.out.println("Added another ticket to your order.");
               continue;
             default:
               checkout = true;
           }
       }
-      System.out.println("You purchased " + num_tickets_bought + " tickets.");
+      System.out.println("You purchased " + ticket_store.getNumTicketsOrdered() + " tickets.");
     }
 
 }
