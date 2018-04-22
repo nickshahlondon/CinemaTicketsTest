@@ -48,7 +48,7 @@ package cinematicketstest1;
 
 /**
  *
- * @author Mitch, Nick
+ * @author Nick
  */
 
 import java.util.*;
@@ -63,7 +63,7 @@ public class CinemaTicketsTest1 {
 //          System.exit(0);
 //      }
 
-        Scanner user_input = new Scanner (System.in);
+      Scanner user_input = new Scanner(System.in);
 
       TicketStore ticket_store = new InMemoryTicketStore();
       boolean checkout = false;

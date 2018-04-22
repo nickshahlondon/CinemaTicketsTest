@@ -10,7 +10,12 @@ package cinematicketstest1;
  * @author Nick
  */
 public interface TicketStore {
+    enum TicketType {STANDARD, OAP, STUDENT, CHILD
+    }
+    
     void addTicketOrder();
     int getNumTicketsOrdered();
+    void purchaseTickets (int Tickets, TicketType ticket_type);
+    int getTotalTicketPrice ();
    
 }
