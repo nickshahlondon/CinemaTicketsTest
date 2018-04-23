@@ -89,19 +89,19 @@ public class CinemaTicketsTest1 {
           switch(command) {
             case 1:
               ticketStore.addTicketOrder();
-              ticketStore.purchaseTickets(1, TicketStore.TicketType.STANDARD, dayOfWeek);
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.STANDARD, TicketStore.DayOfWeek.valueOf(dayOfWeek));
               System.out.println("Added another Stndard ticket to your order.");
             case 2:
               ticketStore.addTicketOrder();
-              ticketStore.purchaseTickets(1, TicketStore.TicketType.OAP, dayOfWeek);
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.OAP, TicketStore.DayOfWeek.valueOf(dayOfWeek));
               System.out.println("Added another OAP ticket to your order.");
             case 3:
               ticketStore.addTicketOrder();
-              ticketStore.purchaseTickets(1, TicketStore.TicketType.STUDENT, dayOfWeek);
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.STUDENT, TicketStore.DayOfWeek.valueOf(dayOfWeek));
               System.out.println("Added another Student ticket to your order.");
             case 4:
               ticketStore.addTicketOrder();
-              ticketStore.purchaseTickets(1, TicketStore.TicketType.CHILD, dayOfWeek);
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.CHILD, TicketStore.DayOfWeek.valueOf(dayOfWeek));
               System.out.println("Added another Child ticket to your order.");
               continue;
             default:
@@ -109,9 +109,11 @@ public class CinemaTicketsTest1 {
           }
       }
       System.out.println("You purchased " + ticketStore.getNumTicketsOrdered() + " tickets.");
+      System.out.println("The total cost of  your tickets is " + ticketStore.getTotalTicketPrice());
     }
 
 }
+        
 
 
 
