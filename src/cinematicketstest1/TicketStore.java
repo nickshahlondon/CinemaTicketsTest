@@ -11,11 +11,15 @@ package cinematicketstest1;
  */
 public interface TicketStore {
     enum TicketType {STANDARD, OAP, STUDENT, CHILD
-    }
+    };
+    enum DayOfWeek {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+    };
+
     
     void addTicketOrder();
     int getNumTicketsOrdered();
-    void purchaseTickets (int Tickets, TicketType ticket_type);
+    void purchaseTickets (int Tickets, TicketType ticketType, DayOfWeek dayOfWeek );
     int getTotalTicketPrice ();
    
 }

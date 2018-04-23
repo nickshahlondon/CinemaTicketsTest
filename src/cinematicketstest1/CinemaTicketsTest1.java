@@ -57,41 +57,58 @@ import java.io.*;
 public class CinemaTicketsTest1 {
 
     public static void main(String[] args) {
-//      Console console = System.console();
-//      if (console == null) {
-//          System.out.println("No console: non-interactive mode!");
-//          System.exit(0);
-//      }
 
-      Scanner user_input = new Scanner(System.in);
+      Scanner userInput = new Scanner(System.in);
 
-      TicketStore ticket_store = new InMemoryTicketStore();
+      TicketStore ticketStore = new InMemoryTicketStore();
       boolean checkout = false;
       while(!checkout) {
-          System.out.println("What do you want to do?");
-          System.out.println("1. Buy another ticket.");
-          System.out.println("2. Check out.");
+          
+          System.out.println("Which day of the week would you like to purchase tickets for?");
+          String dayOfWeek = "";
+          dayOfWeek = userInput.next().toUpperCase();
+  
+          System.out.println("Which type of ticket would you like to buy?");
+          System.out.println("1. A Standard ticket @ £8 per ticket.");
+          System.out.println("2. A OAP ticket @ £6 per ticket.");
+          System.out.println("3. A Student ticket @ £4 per ticket.");
+          System.out.println("4. A Child ticket @ £6 per ticket.");
+          System.out.println("5. Check out.");
           System.out.println();
-          System.out.println ("Enter a selection (1, 2):");
-//          String response = console.readLine("Enter a selection (1, 2): ");
+          System.out.println ("Enter a selection between 1 to 5:");
+          
           int command = 0;
-          String response = user_input.next();
+          String response = userInput.next();
+          
           try {
             command = Integer.parseInt(response);
           } catch(NumberFormatException e) {
-            System.out.println("'" + response + "' is not one of (1, 2).");
+            System.out.println("'" + response + "' is not betwen 1 to 5");
             continue;
           }
           switch(command) {
             case 1:
-              ticket_store.addTicketOrder();
-              System.out.println("Added another ticket to your order.");
+              ticketStore.addTicketOrder();
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.STANDARD, dayOfWeek);
+              System.out.println("Added another Stndard ticket to your order.");
+            case 2:
+              ticketStore.addTicketOrder();
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.OAP, dayOfWeek);
+              System.out.println("Added another OAP ticket to your order.");
+            case 3:
+              ticketStore.addTicketOrder();
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.STUDENT, dayOfWeek);
+              System.out.println("Added another Student ticket to your order.");
+            case 4:
+              ticketStore.addTicketOrder();
+              ticketStore.purchaseTickets(1, TicketStore.TicketType.CHILD, dayOfWeek);
+              System.out.println("Added another Child ticket to your order.");
               continue;
             default:
               checkout = true;
           }
       }
-      System.out.println("You purchased " + ticket_store.getNumTicketsOrdered() + " tickets.");
+      System.out.println("You purchased " + ticketStore.getNumTicketsOrdered() + " tickets.");
     }
 
 }

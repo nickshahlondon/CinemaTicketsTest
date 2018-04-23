@@ -13,32 +13,36 @@ import java.util.*;
 
 public class InMemoryTicketStore implements TicketStore {
 
-    private Map<TicketType, Integer>ticket_prices;
-    private int num_tickets_bought = 0;
-    private int total_price = 0;
+    private Map<TicketType, Integer>ticketPrices;
+    private int numTicketsBought = 0;
+    private int totalPrice = 0;
+    private static final int WED_DISCOUNT = 2;
     
     public InMemoryTicketStore() {
-      ticket_prices = new HashMap<TicketStore.TicketType, Integer>();
-      ticket_prices.put(TicketType.STANDARD, 8);
-      ticket_prices.put(TicketType.OAP, 6);
-      ticket_prices.put(TicketType.STUDENT, 6);
-      ticket_prices.put(TicketType.CHILD, 4);
+      ticketPrices = new HashMap<TicketStore.TicketType, Integer>();
+      ticketPrices.put(TicketType.STANDARD, 8);
+      ticketPrices.put(TicketType.OAP, 6);
+      ticketPrices.put(TicketType.STUDENT, 6);
+      ticketPrices.put(TicketType.CHILD, 4);
  }
 
     @Override
     public void addTicketOrder() {
-        num_tickets_bought++;
+        numTicketsBought++;
     };
     @Override
     public int getNumTicketsOrdered() {
-        return num_tickets_bought;
+        return numTicketsBought;
     };
     @Override
-    public void purchaseTickets (int Tickets, TicketType ticket_type){
-        total_price += Tickets * ticket_prices.get(ticket_type);
+    public void purchaseTickets (int Tickets, TicketType ticketType, DayOfWeek dayOfWeek){
+        if (dayOfWeek == DayOfWeek.WEDNESDAY) {
+                totalPrice += Tickets * (ticketPrices.get(ticketType) - WED_DISCOUNT);
+    }
+        else    totalPrice += Tickets * ticketPrices.get(ticketType);
     }
     @Override
     public int getTotalTicketPrice () {
-        return total_price;
+        return totalPrice;
     };
 }
