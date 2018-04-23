@@ -51,8 +51,7 @@ package cinematicketstest1;
  * @author Nick
  */
 
-import java.util.*;
-import java.io.*;     
+import java.util.*;     
         
 public class CinemaTicketsTest1 {
 
@@ -66,6 +65,11 @@ public class CinemaTicketsTest1 {
           System.out.println("Which day of the week would you like to purchase tickets for?");
           String dayOfWeek = "";
           dayOfWeek = userInput.next().toUpperCase();
+//     need to have code to error check that user has typed one of the days of the week correctly
+//     didn't have time to research how to check whether dayOfWeek is the list {MONDAY,... SUNDAY}
+//     have seen that the program crashes when something like xxx is entered for day of the week
+//     think I could create a string array, populated with "MONDAY", "TUESDAY", etc
+//     and then check if dayofWeek is contained in this array, but have now run out of time.
                    
       while(!checkout) {    
           System.out.println("Which type of ticket would you like to buy?");
@@ -115,7 +119,7 @@ public class CinemaTicketsTest1 {
           }
       }
       System.out.println("You purchased " + ticketStore.getNumTicketsOrdered() + " tickets.");
-      System.out.println("The total cost of  your tickets is " + ticketStore.getTotalTicketPrice());
+      System.out.println("The total cost of  your tickets is £" + ticketStore.getTotalTicketPrice());
     }
 
 }
